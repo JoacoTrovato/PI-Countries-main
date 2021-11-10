@@ -18,13 +18,13 @@ module.exports = (sequelize) => {
       allowNull: false
     },
 
-    flag: {
+    img: {
       type: DataTypes.STRING,
       isUrl: true,
       allowNull: false
     },
 
-    region: {
+    continente: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -44,13 +44,12 @@ module.exports = (sequelize) => {
       allowNull: true
     },
 
-    population: {
+    poblacion: {
       type: DataTypes.INTEGER,
       allowNull: true
-    }
-  });
+    },  
+  },
+  {timestamps: false},  // PARA NO AGREGAR  updated_at/created_at
+  {freezeTableName: true,} //PARA QUE SEQUALIZE USE EL NOMBRE EN SINGULAR DE LA TABLA
+  );
 };
-//id *CODE alpha3Code
-//imagen de la bandera *flags
-//continente *continent
-//capital *capital

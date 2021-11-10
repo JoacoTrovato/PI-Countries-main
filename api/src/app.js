@@ -22,7 +22,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/', routes); // http://localhost:3001/routes
+server.use('/', routes); // http://localhost:3001/routes ROUTES SON MIS RUTAS /paises o /actividades
 //Acá hago que en http://localhost:3001/ pueda usar todas las rutas
 
 // Error catching endware.

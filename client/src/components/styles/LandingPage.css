@@ -1,0 +1,20 @@
+body{
+    background-image: url(./img/Awesome\ World.jpg);
+}  
+.Welcome{
+    color: aliceblue;
+}
+.Presentacion{
+    color: black;
+    height: 80px;
+    position: relative;
+    bottom: -420px;
+    background-color:ghostwhite;
+    filter:alpha(opacity=60);
+    opacity:.6;
+    text-align: center;
+
+}
+.bb{
+    color: white;
+}

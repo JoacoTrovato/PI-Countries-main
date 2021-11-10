@@ -2,38 +2,21 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('Activity', {
-        id: {
-          type: DataTypes.INTEGER,
-          primaryKey: true,
-          autoIncrement: true
-        },
         name: {
           type: DataTypes.STRING,
-          allowNull: true,
-          unique: true
-        },
-        difficulty: {
-          type: DataTypes.INTEGER,
           allowNull: false,
-          validate: {
-              max: 5,
-              min: 1
-          },
-          allowNull: true
         },
-        duration: {
-          type: DataTypes.INTEGER,
-          allowNull: true
+        dificultad:{
+          type: DataTypes.STRING
         },
-        season: {
-          type: DataTypes.ENUM,
-          values: ['summer', 'winter', 'spring', 'autumn'],
-          allowNull: true
-        }
-    });
+        duracion:{
+          type: DataTypes.STRING
+        },
+        temporada:{
+            type: DataTypes.STRING
+        },
+      },
+      {timestamps: false}, // PARA NO AGREGAR  updated_at/created_at
+      {freezeTableName: true,} //PARA QUE SEQUALIZE USE EL NOMBRE EN SINGULAR DE LA TABLA
+    );
 };
-
-
-//id
-//name
-//season 

@@ -1,0 +1,34 @@
+.prueba{
+    justify-content: center;
+    display: inline-block center;
+    width: 1200px;
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    text-align: center;
+    
+}
+.body{
+    justify-content: center;
+}
+.Body{
+    justify-content: center;
+
+}
+.boton{
+    border-radius: 10px;
+    width: 25px;
+    height: 25px;
+}
+.boton:hover{
+    background-color: rgb(253, 30, 0);
+    color: white;
+    transition:0.5s;
+}
+.actividad{
+    background-color: rgba(245, 245, 220, 0.246);
+}
+.Text{
+    color: white;
+}

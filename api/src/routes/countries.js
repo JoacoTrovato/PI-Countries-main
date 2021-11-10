@@ -3,76 +3,62 @@ const { Country, Activity } = require('../db');
 const { Op } = require('sequelize');
 const router = Router();
 
-router.get("/", async (req, res, next) =>{
-    try{
-    const name = req.query.name;
-        if (name) {
-            //Guardo en una variable y uso el endpoint de buscar paises por nombre:
-            const countriApi = await Country.findAll({
-                where: { //Where busca en la base de datos
-                    name: {
-                        [Op.iLike]: "%" + name + "%"
-                    }
-                },
-            });
-            //Si me llega data, la mando:
-            if (countriApi) {
-                res.send(countriApi)
-            } else {
-            //Si no mando un error
-                res.send("No se ha podido encontrar el pais indicado")
+router.get('/', async (req, res, next) =>{
+    let Name = req.query.name
+        if (Name) {    //ACA ME TRAIGO TODOS LOS PAISES
+            try{
+                let paQuery = await Country.findAll({
+                    include: Activity,
+                    where:{
+                        name:{
+                            [Op.iLike]: '%' + Name + '%'}}})
+                if (!paQuery.length) {
+                    return res.status(404).json('No se encontro el pais que estas buscando')
+                }else{
+                    return res.json(paQuery)
+                }
             }
-        } 
-        // else if (req.query.Activity) {
-        //     const { actividad } = req.query.Activity
-        //     const fActivity = await Country.findAll({
-        //         include:{
-        //             Activity,
-        //             where: {
-        //                 name: actividad
-        //             },
-        //             // through:{
-        //             //     attributes:[]
-        //             // },
-        //             required: true
-        //         }
-                
-        //     })
-        //     return res.json(fActivity)
-        // } 
-        else {
-            //Busco toda la data desde la db y la guardo en la variable data:
-            const data = await Country.findAll();
-            res.send(data)
+            catch(errro){
+                next(error);
+            }
         }
+    try{
+        const paisesBd = await Country.findAll({
+            include: {model: Activity}
+        })
+        return res.json(paisesBd)
     }
+    catch(error){
+        next(error);
+    }
+    })
+    
+    router.get('/:id', async (req, res, next)=>{   
+    try{
+        const {id} = req.params;
+        var ap = await Country.findByPk(id,{
+        include: Activity,
+        })
+        return res.send(ap)
+        }
     catch(error){
         next(error)
     }
-});
+    })
 
-router.get("/:id", async (req, res, next) => {
-    try {
-        //Guardo en una variable el params
-        const {id} = req.params;
-        //Me traigo los datos de la base de datos
-        await Country.findByPk(id.toUpperCase(), { //Acá defino todos los parámetros que quiero que me muestre
-            include: Activity,
-            attributes: ["flag", "name", "capital", "id", "subregion", "area", "population"],
-            where:{ //Where busca en la base de datos
-                id: id
-            }
-        })
-        .then(countries =>{ 
-            res.send(countries);
-        })
-    //Si no me tira el error
-    }
-    catch (error) {
-        next(error)
-    }
-});
-
+    // {                     ASI ME TRAIGO LA INFO PARA USAR EN DETAIL
+    //     "id": "ARG",
+    //     "name": "Argentina",
+    //     "img": "https://flagcdn.com/ar.svg",
+    //     "continente": "Americas",
+    //     "capital": "Buenos Aires",
+    //     "subregion": "South America",
+    //     "area": 2780400,
+    //     "poblacion": 45376763,
+    //     "Activities": []  Lo incluyo en todas pero solo da informacion si viene con actividades
+    // }
+    
+    
 module.exports = router;
 
 

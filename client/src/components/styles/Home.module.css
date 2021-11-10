@@ -1,0 +1,39 @@
+.body{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.card{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    text-align: center;
+}
+.DivPais{
+    justify-content: space-between;
+}
+.Pais{
+    width: 100px;
+    height: 100px;
+    background-color: blanchedalmond;
+    border: 0.2px solid #0099CC;
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: space-between;
+}
+.btnAdmin{
+    padding: 4px 10px;
+    border: none;
+    background: transparent;
+    color: white;
+    border: 0.5px solid #0099CC;
+}
+.btnAdmin:hover{
+    background-color: cornflowerblue;
+    color: white;
+    transition:0.5s;
+    border: 0.2px solid #0099CC;
+}

@@ -21,41 +21,28 @@ const server = require('./src/app.js');
 const { conn, Country } = require('./src/db.js');
 const axios = require('axios').default;
 
+//precargando datos de la api
+const peticionApi = async function (){
+  const Api = await axios.get(`https://restcountries.com/v3/all`)
+  const datosBd = Api.data.map(el =>{
+    return {
+      id: el.cca3,
+      name: el.name.common,
+      img: el.flags[0],
+      continente: el.region,
+      capital: el.capital ===undefined || el.capital.lenght < 1 ? 'undefined' : el.capital[0],
+      subregion: el.subregion,
+      area: el.area,
+      poblacion: el.population,
+      region: el.region
+    }})
+  const aux = await Country.bulkCreate(datosBd) //guardando en la base de datos
+}
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
+  peticionApi()
+
   server.listen(3001, () => {
-      console.log("%s at 3001", "Todo piola");
-      const API = "https://restcountries.com/v3/all"
-      const getApiInfo = async() => {
-      const apiURL = await axios.get(API);
-      const apiResults = apiURL.data; //Data porque viene de axios
-      await apiResults.map((c) => {
-         Country.findOrCreate({
-          where: {
-          id: c.cca3,
-          name: c.name.official,
-          flag: c.flags[0],
-          region: c.region,
-          capital: c.capital ? c.capital[0] : "capital not found",
-          subregion: c.subregion ? c.subregion : "sub region not found",
-          area: c.area,
-          population: c.population, //ponerle actividad
-          // activity: c.activity ? c.activity: "actividad no encontrada",
-          }
-        })
-      //.then((instancia) => console.log(instancia.toJSON()))
-      .catch((err) => console.log(err))
-      });
-    };
-    getApiInfo();
+    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  });
 });
-});
-
-
-
-// conn.sync({ force: true }).then(() => {
-//   server.listen(3001, () => {
-//     console.log('% listening at 3001'); // eslint-disable-line no-console
-//     const countries = axios.get("https://restcountries.com/v3/all")
-//   });
-// }).catch(error => console.log(error));
