@@ -22,7 +22,7 @@ export default function Home(){
     const nombreActividad = useSelector((state)=> state.actividad);
     const paginado = (NumeroPage)=>{setcurrentPage(NumeroPage)};
     const prueba = nombreActividad.map((e)=> e.name);
-    const unicos = [...new Set(prueba)]; 
+    const unicos = [...new Set(prueba)];
 
 
 useEffect(()=>{
@@ -74,10 +74,10 @@ return(
     </div>
     <div className>
         { unicos.length === 0?
-        <p>Crea actividades para filtrarlas</p>
+        <p className="CreateActivities">Crea actividades para filtrarlas</p>
     : <select className={StyleHome.btnAdmin} onChange = {ev => handleActividades(ev)}>
     {unicos.map((ev)=>(
-    <option value ={ev} > {ev} </option>
+    <option value ={ev} > {ev}</option>
     ))}
     </select>
     }
@@ -108,8 +108,8 @@ return(
     paginado={paginado}>
     </Paginado></div> 
     {paisesPageActual?.map(el=>{ //aca seteo la informacion que se va a mostrar en mi home con el paginado
-    return(
-    <div key={el.id} className = 'card'>
+    return( //el key no tiene que ser id, pero por eso uso otro
+    <div key={el.name} className = 'card'>
     <Link to= {'/home/' + el.id}> 
     <Card name={el.name} continente={el.continente} imagen={el.img} poblacion={el.poblacion}  />
     </Link>

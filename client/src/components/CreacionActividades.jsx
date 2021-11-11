@@ -129,9 +129,9 @@ function hadleSubmit(ev) {
             </form>
             <div className={StyleHome.DivPais}>
             {input.countryid.map(el=> //para borrar paises despues de agregarlos
-                <div className={StyleHome.Pais}>
+                <div key={el.name} className={StyleHome.Pais}> {/* declaro key para que no se rompa */}
                     <h6>{el}</h6>
-                    <button className={StyleHome.btnAdmin} className ='boton' onClick={()=> hadleDelete(el)}>x</button>
+                    <button /* tengo className dos veces */ className ='boton' onClick={()=> hadleDelete(el)}>x</button>
                 </div>)}
             </div>
         </div>

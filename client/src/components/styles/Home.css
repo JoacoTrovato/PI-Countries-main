@@ -1,7 +1,4 @@
-body{
-    background-image: url(./img/Awesome\ World.jpg);
-}  
- .card{
+.card{
     width: 330px;
     height: 430px;
     border-radius: 8px;
@@ -48,4 +45,7 @@ body{
     align-items: center;
     justify-content: space-between;
     display: flex;
+}
+.CreateActivities{
+    color:aliceblue;
 }

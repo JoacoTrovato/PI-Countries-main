@@ -23,7 +23,6 @@ export function getSearch(name) {
 export function getActividad() {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3001/actividades");
-        console.log('json', json.data);
         return dispatch({
             type:'GET_ACTIVIDAD',
             payload: json.data

@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import './styles/Detail.css'
 
 export default function Detail(props) {
-    console.log('soy las props', props);
     const dispatch =  useDispatch();
 
 useEffect(()=>{
@@ -17,10 +16,13 @@ const Pais = useSelector((state)=> state.detail); //Mi estado con la informacion
 
 return (
     <div >
+        <div className="DivVolver">
+            <Link to='/home'><button className="ButtonVolver">Volver</button></Link>
+        </div>
         {
             Pais? 
             <div className='detalle'>
-                <h1>{Pais.name}  {console.log(Pais)}</h1>
+                <h1>{Pais.name}</h1>
                 <img src = {Pais.img} alt='Imagen no encontrada' width='250px' height='175px' />
                 <h2>ID: {Pais.id}</h2>
                 <h2>Continente: {Pais.continente}</h2>
@@ -36,11 +38,10 @@ return (
                             <h6>Temporada: {activity.temporada} </h6>
                             <h6>Duracion: {activity.duracion}</h6>
                         </div>
-                )})};
+                )})}
                 </div>
             </div> : <p>No encontramos los detalles perdon:c</p>
-        };
-        <Link to='/home'><button>Volver</button></Link>
+        }
     </div>
 );
 };

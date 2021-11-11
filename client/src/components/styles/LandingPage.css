@@ -1,6 +1,6 @@
 body{
-    background-image: url(./img/Awesome\ World.jpg);
-}  
+    background-image: url(../styles/img/World.jpg);
+}
 .Welcome{
     color: aliceblue;
 }
