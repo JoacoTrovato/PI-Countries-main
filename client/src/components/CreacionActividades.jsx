@@ -56,7 +56,7 @@ function hadleSelect(ev) {
     });
 };
 
-function hadleTemporada(ev) {console.log(ev, 'gbshas')
+function hadleTemporada(ev) {
     setInput({
         ...input,
         temporada: ev.target.value
@@ -76,6 +76,7 @@ function hadleSubmit(ev) {
         ...input,
         [ev.target.value]: ev.target.value
     }));
+    
     dispatch(postActividad(input))
     setInput({
         name:"",
@@ -83,20 +84,24 @@ function hadleSubmit(ev) {
         duracion:"",
         temporada:"",
         countryid:[]
+        
     });
 };
     return(
-        <div >
-            <h1 className='Text'>Crea tu actividad</h1>
+        <div className='CreaActividad'>
+            <h1 className='Titulo'>Crea tu actividad</h1>
+            <div className='botonVolver'>
             <Link to = '/home'><button className={StyleHome.btnAdmin}>Volver</button></Link> 
+            </div>
             <div className={StyleHome.body}>
             <form className = 'prueba'>
-                <div>
+                
+                <div className='divActividades'>
                     <label className='Text'>Actividad:</label>
                     <input className={StyleHome.btnAdmin} type = 'text' value = {input.name} name ='name'
                     onChange={(ev) => hadleChange(ev)}></input>
                 </div>
-                <div>
+                <div className='divActividades'>
                     <label className='Text'>Dificultad:</label>
                     <select className={StyleHome.btnAdmin} onChange = {(ev)=> hadleDificultad(ev)}>
                     <option value='1'>1</option>
@@ -106,12 +111,12 @@ function hadleSubmit(ev) {
                     <option value='5'>5</option>
                     </select>
                 </div>
-                <div>
+                <div className='divActividades'>
                     <label className='Text'>Duracion:</label>
                     <input className={StyleHome.btnAdmin} type = 'string' value = {input.duracion} name ='duracion'
                     onChange={(ev) => hadleChange(ev)}></input>
                 </div>
-                <div>
+                <div className='divActividades'>
                     <label className='Text'>Temporada:</label>
                     <select className={StyleHome.btnAdmin} onChange={(ev) => hadleTemporada(ev)} >
                     <option value ='verano'>Verano</option>
@@ -120,12 +125,14 @@ function hadleSubmit(ev) {
                     <option value='primavera'>Primavera</option>
                     </select>
                 </div>
+                <div className='divActividades'>
                 <label className='Text'>Paises: <select className={StyleHome.btnAdmin} onChange = {(ev) => hadleSelect(ev)}>
                     {paisesSeleccionados.map((ev)=>(
                         <option value ={ev.id} >{ev.name} </option>
                     ))}
                 </select></label>
             <button className={StyleHome.btnAdmin} type='submit' onClick={(ev) => hadleSubmit(ev)}>Agregar</button>
+            </div>
             </form>
             <div className={StyleHome.DivPais}>
             {input.countryid.map(el=> //para borrar paises despues de agregarlos

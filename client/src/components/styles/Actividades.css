@@ -1,13 +1,31 @@
-.prueba{
-    justify-content: center;
-    display: inline-block center;
-    width: 1200px;
-    height: 300px;
-    border-radius: 5px;
+.CreaActividad{
+    
+    height: 500px;
+    width: 1230px;
+    padding: 200px;
+    border: 5px solid #f3e306;
+    margin: 60px;
+    box-sizing: border-box;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
     overflow: hidden;
+    backdrop-filter: blur(4px);
+}
+.divActividades{
+    display: block;
+    margin: 10px;
+
+}
+
+.prueba{
+    justify-content: center;
+    display: absolute;
+    
+    border-radius: 5px;
+    
     text-align: center;
     
+    position: relative;
+    top: -130px;
 }
 .body{
     justify-content: center;
@@ -37,4 +55,15 @@
 }
 .Text{
     color: white;
+}
+.Titulo{
+    color: white;
+    position: relative;
+    top: -150px;
+    
+
+}
+.botonVolver{
+    position: relative;
+    top: -150px;
 }

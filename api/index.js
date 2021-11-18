@@ -31,7 +31,7 @@ const peticionApi = async function (){
       name: el.name.common,
       img: el.flags[0],
       continente: el.region,
-      capital: el.capital ===undefined || el.capital.lenght < 1 ? 'undefined' : el.capital[0],
+      capital: el.capital === undefined || el.capital.lenght < 1 ? 'undefined' : el.capital[0],
       subregion: el.subregion,
       area: el.area,
       poblacion: el.population,

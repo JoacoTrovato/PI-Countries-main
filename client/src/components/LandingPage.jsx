@@ -8,10 +8,14 @@ export default function landingPage(){
         <div className = 'Body'>
             <div className = 'aa'>
                 <h1 className = 'Welcome'>PI Paises</h1>
+                    <div className = 'Boton'>
                     <Link to = '/home'>
                         <button className={StyleHome.btnAdmin}>Ingresar</button>
                     </Link>
-                <h3 className = 'Presentacion'>Página desarrollada por Joaquín Trovato</h3>
+                    </div>
+                <div className = 'Presentacion'>
+                <h3 className = 'TextoPresentacion'>Página desarrollada por Joaquín Trovato</h3>
+                </div>
             </div>
         </div>
     );

@@ -24,13 +24,13 @@ export default function Home(){
     const prueba = nombreActividad.map((e)=> e.name);
     const unicos = [...new Set(prueba)];
 
-
+// usar font-family: 'Source Code Pro', monospace;
 useEffect(()=>{
-    dispatch(getPaises());
+    dispatch(getPaises()); //me traigo la info de paises para usarla
 },[dispatch]);
 
 useEffect(()=>{
-    dispatch(getActividad());
+    dispatch(getActividad()); //me traigo las actividades para usarlas
 },[dispatch]);
 
 //reseteo Paises
@@ -70,9 +70,11 @@ return(
     <div className='ToLanding'>
     <Link to = '/'><button className={StyleHome.btnAdmin}>Landing</button></Link>       
     </div>
+    <div className='ToActivities'>
     <Link to = '/actividades'><button className={StyleHome.btnAdmin}>Crear Actividades</button></Link>
     </div>
-    <div className>
+    </div>
+    <div className='ContenedorBotones'>
         { unicos.length === 0?
         <p className="CreateActivities">Crea actividades para filtrarlas</p>
     : <select className={StyleHome.btnAdmin} onChange = {ev => handleActividades(ev)}>
@@ -101,7 +103,7 @@ return(
     <button className={StyleHome.btnAdmin} onClick={ev=> {handleClick(ev)}}>Volver a cargar paises</button>
     </div>
     <br/>
-    <div>
+    <div className = 'paginado'>
     <Paginado
     paisesPerPage = {paisesPerPage}
     paisesSeleccionados={paisesSeleccionados.length}
@@ -109,7 +111,7 @@ return(
     </Paginado></div> 
     {paisesPageActual?.map(el=>{ //aca seteo la informacion que se va a mostrar en mi home con el paginado
     return( //el key no tiene que ser id, pero por eso uso otro
-    <div key={el.name} className = 'card'>
+    <div key={el.id} className = 'card'>
     <Link to= {'/home/' + el.id}> 
     <Card name={el.name} continente={el.continente} imagen={el.img} poblacion={el.poblacion}  />
     </Link>
