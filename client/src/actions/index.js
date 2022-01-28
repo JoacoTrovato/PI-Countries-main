@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function getPaises() {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/paises");
+        var json = await axios.get("/paises");
         return dispatch({
             type:'GET_PAISES',
             payload: json.data
@@ -11,7 +11,7 @@ export function getPaises() {
 export function getSearch(name) {
     return async function (dispatch) {
         try{
-        var json = await axios.get("http://localhost:3001/paises?name=" + name)
+        var json = await axios.get("/paises?name=" + name)
         return dispatch ({
             type : "GET_SEARCH",
             payload : json.data
@@ -22,7 +22,7 @@ export function getSearch(name) {
 
 export function getActividad() {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/actividades");
+        var json = await axios.get("/actividades");
         return dispatch({
             type:'GET_ACTIVIDAD',
             payload: json.data
@@ -31,7 +31,7 @@ export function getActividad() {
 export function getDetail(id) {
     return async function (dispatch) {
         try{
-            var json = await axios.get("http://localhost:3001/paises/"+id)
+            var json = await axios.get("/paises/"+id)
             return  dispatch({
                 type: 'GET_DETAIL',
                 payload : json.data
@@ -42,7 +42,7 @@ export function getDetail(id) {
 
 export function postActividad(payload) {
     return async function (dispatch) {
-        var json = await axios.post("http://localhost:3001/actividades", payload);
+        var json = await axios.post("/actividades", payload);
         return dispatch({
             type : 'POST_ACTIVIDAD',
             payload : json
