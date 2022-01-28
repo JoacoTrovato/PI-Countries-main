@@ -46,7 +46,7 @@ const peticionApi = async function (){
 conn.sync({ force: false }).then(() => {
   peticionApi()
 
-  server.listen(3001, () => {
+  server.listen(process.env.DB_PORT, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   })
 });
